@@ -1,53 +1,16 @@
 import React from 'react';
-import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
-class Login extends Component {
-    constructor(){
-        super();
-        this.state = {
-            username: '',
-            password: '',
-        }
-    }
-
-    handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState({
-            [name]: value,
-        });
-    }
-
-    render(){
-        return(
-            
-            <>
-                <div className="loginlogo">thrift fit</div>
-                <div className="loginform">
-                <form className="loginform" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
-                    <input 
-                    type='text'
-                    name='username'
-                    value={this.state.username}
-                    placeholder='Username'
-                    onChange={this.handleChange} 
-                    />
-
-                    <input 
-                    type='password'
-                    name='password'
-                    value={this.state.password}
-                    placeholder='Password'
-                    onChange={this.handleChange} 
-                    />
-                    <input type='submit' value='Log in!'/>
-                </form>
-                <Link to="/register">Don't have an account?</Link>
-                </div>
-            </>
-        )
-    }
+const Header = (props) => {
+    return(
+        <div>
+            <Link to="/TextChat">TextChat</Link>
+            <Link to="/VideoChat">VideoChat</Link>
+            <Link to="/login">Login</Link> <Link to="/dashboard">Dashboard</Link>
+            <Link to="/register">Register</Link>
+            <Link onClick={props.logout} to="/">Logout</Link>
+        </div>
+    )
 }
-export default Login;
+
+export default Header;

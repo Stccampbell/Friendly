@@ -22,9 +22,6 @@ class Login extends Component {
 
     render(){
         return(
-            
-            <>
-                <div className="loginlogo">thrift fit</div>
                 <div className="loginform">
                 <form className="loginform" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
                     <input 
@@ -46,7 +43,6 @@ class Login extends Component {
                 </form>
                 <Link to="/register">Don't have an account?</Link>
                 </div>
-            </>
         )
     }
 }

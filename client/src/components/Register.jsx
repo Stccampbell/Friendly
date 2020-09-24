@@ -23,8 +23,6 @@ class Register extends Component {
 
     render(){
         return(
-            <>
-            <div className="loginlogo">thrift fit</div>
             <div className="loginform">
                 <form className="loginform" onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state)}>
                     <input 
@@ -63,7 +61,6 @@ class Register extends Component {
                 </form>
                 <Link to="/login">Already have an account?</Link>
             </div>
-            </>
         )
     }
 }
