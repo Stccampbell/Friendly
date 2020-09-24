@@ -2,13 +2,14 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
-class Login extends Component {
+class Register extends Component {
     constructor(){
         super();
         this.state = {
             username: '',
             password: '',
+            email: '',
+            name: '',
         }
     }
 
@@ -22,11 +23,10 @@ class Login extends Component {
 
     render(){
         return(
-            
             <>
-                <div className="loginlogo">thrift fit</div>
-                <div className="loginform">
-                <form className="loginform" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
+            <div className="loginlogo">thrift fit</div>
+            <div className="loginform">
+                <form className="loginform" onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state)}>
                     <input 
                     type='text'
                     name='username'
@@ -42,12 +42,29 @@ class Login extends Component {
                     placeholder='Password'
                     onChange={this.handleChange} 
                     />
-                    <input type='submit' value='Log in!'/>
+
+                    <input 
+                    type="email" 
+                    name="email" 
+                    value={this.state.email} 
+                    placeholder="email" 
+                    onChange={this.handleChange} 
+                    />
+
+                    <input 
+                    type="text" 
+                    name="name" 
+                    value={this.state.name} 
+                    placeholder="Name" 
+                    onChange={this.handleChange} 
+                    />
+
+                    <input type='submit' value='Register!'/>
                 </form>
-                <Link to="/register">Don't have an account?</Link>
-                </div>
+                <Link to="/login">Already have an account?</Link>
+            </div>
             </>
         )
     }
 }
-export default Login;
+export default Register;
