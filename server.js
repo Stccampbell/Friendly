@@ -43,11 +43,30 @@ app.use(express.static('public'));
 //     );
 //   };
 
+
+const http = require('http').createServer(app);
+const socket = require('socket.io');
+const io = socket(http)
+
+io.on('connection', (socket) => {
+    console.log(`A user connected on ${socket.id}`);
+
+    socket.on('SEND_MESSAGE', function(data) {
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+  });
+
+
 //Tell the app to listen to the port
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+
+http.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 });
+
+// app.listen(PORT, () => {
+//     console.log(`Listening on ${PORT}`);
+// });
 
 //tell the app to say hello world at /
 app.get('/', (req, res) => {
