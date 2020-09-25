@@ -5,10 +5,10 @@ import Room from './Room';
 
 
 class VideoChat extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            username: '',
+            // username: '',
             roomName: '',
             token: null,
         }
@@ -35,7 +35,7 @@ class VideoChat extends Component {
         fetch('/communication/video/token', {
             method: 'POST',
             body: JSON.stringify({
-                identity: this.state.username,
+                identity: this.props.user.name,
                 room: this.state.roomName
             }),
             headers: {
@@ -66,7 +66,7 @@ class VideoChat extends Component {
         }
         else {
             return <Lobby
-            username={this.state.username}
+            // username={this.props.user.name}
             roomName={this.state.roomName}
             // handleUsernameChange={this.handleUsernameChange}
             // handleRoomNameChange={this.handleRoomNameChange}

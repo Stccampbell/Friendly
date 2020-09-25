@@ -77,6 +77,9 @@ app.get('/', (req, res) => {
 const communicationRouter = require('./routes/communication-router');
 app.use('/communication', communicationRouter)
 
+const authRouter = require('./routes/auth-routes');
+app.use('/api/auth', authRouter);
+
 app.use('*', (req, res) => {
     res.status(400).json({
         message: 'Not Found!',

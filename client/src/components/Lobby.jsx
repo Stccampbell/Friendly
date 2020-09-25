@@ -11,7 +11,7 @@ const Lobby = (
     return(
         <form onSubmit={props.handleSubmit}>
             <h2>Enter a Room</h2>
-            <div>
+            {/* <div>
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
@@ -21,7 +21,7 @@ const Lobby = (
                     onChange={props.handleChange}
                     required
                 />
-            </div>
+            </div> */}
 
             <div>
                 <label htmlFor="room">Room name:</label>

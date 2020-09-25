@@ -5,7 +5,7 @@ class TextChat extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            // username: '',
             message: '',
             messages: []
         };
@@ -15,7 +15,7 @@ class TextChat extends React.Component{
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
+                author: this.props.user.name,
                 message: this.state.message
             });
             this.setState({message: ''});
@@ -48,8 +48,8 @@ class TextChat extends React.Component{
                                     })}
                                 </div>
                                 <div className="footer">
-                                    <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
-                                    <br/>
+                                    {/* <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/> */}
+                                    {/* <br/> */}
                                     <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <br/>
                                     <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>

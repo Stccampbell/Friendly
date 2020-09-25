@@ -17,35 +17,100 @@ class App extends Component {
       user: null,
     }
   }
+
+  componentDidMount() {
+    fetch('/api/auth/verify', { credentials: 'include' })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          auth: res.auth,
+          user: res.data.user,
+        })
+      }).catch(err => console.log(err));
+  }
+
+  handleLoginSubmit = (e, data) => {
+    e.preventDefault();
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: res.auth,
+        user: res.data.user
+      })
+    }).catch(err => console.log(err));
+  }
+
+  handleRegisterSubmit = (e, data) => {
+    e.preventDefault();
+    fetch('/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: res.auth,
+        user: res.data.user
+      })
+    }).catch(err => console.log(err));
+  }
+
+  logout = () => {
+    fetch('/api/auth/logout', {
+      credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        auth: res.auth,
+        user: res.data.user,
+      })
+    }).catch(err => console.log(err))
+  }
+
   render(){
     return (
       <div className="App">
         <header className="App-header">
-          <Header />
+          <Header logout={this.logout}/>
         </header>
             <div>
-            <Route exact path='/login' render={() => (
+            <Route exact path='/Login' render={() => (
                 this.state.auth
                 ? <Redirect to='/' />
-                : <Login />
+                : <Login handleLoginSubmit={this.handleLoginSubmit} />
               )} />
 
-            <Route exact path='/register' render={() => (
+            <Route exact path='/Register' render={() => (
               this.state.auth
               ? <Redirect to='/' />
-              : <Register/>
+              : <Register handleRegisterSubmit={this.handleRegisterSubmit}/>
             )} />
 
             <Route exact path='/VideoChat' render={() => (
-                this.state.auth
-                ? <Redirect to='/' />
-                : <VideoChat />
+                !this.state.auth
+                ? <Redirect to='/Login' />
+                : <VideoChat user={this.state.user}/>
               )} />
 
             <Route exact path='/TextChat' render={() => (
-                this.state.auth
-                ? <Redirect to='/' />
-                : <TextChat />
+                !this.state.auth
+                ? <Redirect to='/Login' />
+                : <TextChat user={this.state.user}/>
               )} />
               
             </div>
