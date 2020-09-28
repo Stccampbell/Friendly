@@ -20,6 +20,10 @@ You will also need to sign up with Twilio and get some keys from them.
 - TWILIO_API_SECRET="Key"
 All of these should be put in your .env file.
 
+## Unresolved issues
+- You need to send a message in chat before you can recieve messages.
+- if you refresh the page on login or logout you need to go back to the root of the webpage.
+
 ## WireFrames
 ![Wireframes](./preproduction/Login.png)
 ![Wireframes](./preproduction/Video.png)
