@@ -1,6 +1,6 @@
 # Friendly
 is a Video sharing app similar to zoom and skype. The idea was to push myself and explore technologies we hadnt gone over in class!
-[DemoPhoto](./preproduction/Screen Shot 2020-09-28 at 1.30.46 PM 1.png)
+![DemoPhoto](./preproduction/ExamplePhoto.png)
 
 ## Link to deployed app
 https://still-tor-23302.herokuapp.com/
