@@ -49,10 +49,28 @@ const socket = require('socket.io');
 const io = socket(http)
 
 io.on('connection', (socket) => {
+    // socket.on('JOIN_ROOM', function (data) {
+    //     return roomName = data.roomName
+    // });
+
+    //connecting to room
+    // if(roomName){
+    // socket.join(roomName);
+    // console.log(roomName)
+    // }
+
     console.log(`A user connected on ${socket.id}`);
+    // console.log(socket)
+
+    // socket.on('SEND_MESSAGE', function(data) {
+    //     io.to(roomName).emit('RECEIVE_MESSAGE', data);
+    // })
 
     socket.on('SEND_MESSAGE', function(data) {
-        io.emit('RECEIVE_MESSAGE', data);
+        const roomName = data.roomName
+        socket.join(roomName)
+        console.log(roomName)
+        io.to(roomName).emit('RECEIVE_MESSAGE', data);
     })
   });
 
@@ -76,6 +94,9 @@ app.get('/', (req, res) => {
 //Routes
 const communicationRouter = require('./routes/communication-router');
 app.use('/communication', communicationRouter)
+
+const authRouter = require('./routes/auth-routes');
+app.use('/api/auth', authRouter);
 
 app.use('*', (req, res) => {
     res.status(400).json({
