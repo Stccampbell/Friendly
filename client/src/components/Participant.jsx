@@ -51,12 +51,22 @@ const Participant = ( props ) => {
     }
   }, [videoTracks]);
 
+  useEffect(() => {
+    const audioTrack = audioTracks[0];
+    if (audioTrack) {
+      audioTrack.attach(audioRef.current);
+      return () => {
+        audioTrack.detach();
+      };
+    }
+  }, [audioTracks]);
+
 
   return (
     <div className="participant">
       <h3>{props.participant.identity}{props.muted ? ": Muted" : ""}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={props.muted} />
+      <audio ref={audioRef} autoPlay={true}  />
     </div>
   );
 };
