@@ -14,7 +14,7 @@ class VideoChat extends Component {
             roomName: '',
             token: null,
             textBox: 'container textBox hidden',
-            muted: true,
+            muted: false,
         }
         // this.socket = io('localhost:3001')
         this.socket = io()
