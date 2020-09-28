@@ -22,26 +22,36 @@ class Login extends Component {
 
     render(){
         return(
-                <div className="loginform">
-                <form className="loginform" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
-                    <input 
-                    type='text'
-                    name='username'
-                    value={this.state.username}
-                    placeholder='Username'
-                    onChange={this.handleChange} 
-                    />
+                <div className="loginPage">
+                     <div className="card login">
+                        <div className="card-body bodyLogin">
+                            <div className="card-title">Login</div>
+                            <hr/>
+                            <form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
+                                <input 
+                                className='loginInput'
+                                type='text'
+                                name='username'
+                                value={this.state.username}
+                                placeholder='Username'
+                                onChange={this.handleChange} 
+                                />
+                                <br/>
 
-                    <input 
-                    type='password'
-                    name='password'
-                    value={this.state.password}
-                    placeholder='Password'
-                    onChange={this.handleChange} 
-                    />
-                    <input type='submit' value='Log in!'/>
-                </form>
-                <Link to="/register">Don't have an account?</Link>
+                                <input 
+                                className='loginInput'
+                                type='password'
+                                name='password'
+                                value={this.state.password}
+                                placeholder='Password'
+                                onChange={this.handleChange} 
+                                />
+                                <br></br>
+                                <input className="loginButton" type='submit' value='Log in!'/>
+                            </form>
+                            <Link to="/register">Don't have an account?</Link>
+                        </div>
+                    </div>
                 </div>
         )
     }

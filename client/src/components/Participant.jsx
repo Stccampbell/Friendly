@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Participant = ({ participant }) => {
+const Participant = ( props ) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
   
@@ -28,18 +28,18 @@ const Participant = ({ participant }) => {
       }
     };
 
-    setVideoTracks(trackpubsToTracks(participant.videoTracks));
-    setAudioTracks(trackpubsToTracks(participant.audioTracks));
+    setVideoTracks(trackpubsToTracks(props.participant.videoTracks));
+    setAudioTracks(trackpubsToTracks(props.participant.audioTracks));
 
-    participant.on('trackSubscribed', trackSubscribed);
-    participant.on('trackUnsubscribed', trackUnsubscribed);
+    props.participant.on('trackSubscribed', trackSubscribed);
+    props.participant.on('trackUnsubscribed', trackUnsubscribed);
 
     return () => {
       setVideoTracks([]);
       setAudioTracks([]);
-      participant.removeAllListeners();
+      props.participant.removeAllListeners();
     };
-  }, [participant]);
+  }, [props.participant]);
 
   useEffect(() => {
     const videoTrack = videoTracks[0];
@@ -54,9 +54,9 @@ const Participant = ({ participant }) => {
 
   return (
     <div className="participant">
-      <h3>{participant.identity}</h3>
+      <h3>{props.participant.identity}{props.muted ? ": Muted" : ""}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={true} />
+      <audio ref={audioRef} autoPlay={true} muted={props.muted} />
     </div>
   );
 };
