@@ -15,16 +15,24 @@ body {
 }
 
 header {
-  background: #f0293e;
+  background: #2a9d8f;
+  display: flex;
   color: #fff;
-  text-align: center;
+  /* text-align: center; */
   flex-grow: 0;
   margin-bottom: 2em;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
   font-weight: 300;
   padding: 0.4em 0;
+}
+
+.title {
+  justify-self: center;
+  margin-left: 5vw;
 }
 
 #root {
@@ -86,36 +94,45 @@ button:hover {
   position: relative;
 }
 .room button {
-  position: absolute;
-  top: 0;
-  right: 20px;
+  position: relative;
+  right: -20%;
+  /* top: 0;
+  right: 45%; */
 }
 .room > h3 {
   text-align: center;
   font-weight: 300;
   margin-bottom: 1em;
+  margin-right: 20vw;
 }
 
-.local-participant {
+/* .local-participant {
   text-align: center;
   margin-bottom: 2em;
-}
-.remote-participants {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+} */
+.participants {
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* justify-content: space-between; */
   padding: 0 2em 2em;
+  height: 79vh;
+  display: grid;
+  /* grid-template-columns: repeat( 4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  overflow-y: auto;
+  
 }
 .participant {
-  background: #333e5a;
+  background: #264653;
   padding: 10px;
   border-radius: 6px;
   display: inline-block;
-  margin-right: 10px;
+  margin: 10px;
+  /* height: auto; */
+  width:fit-content; 
+  height:fit-content; 
 }
-.participant:last-child {
-  margin-right: 0;
-}
+
 .participant h3 {
   text-align: center;
   padding-bottom: 0.5em;
@@ -124,20 +141,51 @@ button:hover {
 
 video {
   width: 100%;
-  max-width: 600px;
+  max-width: auto;
   display: block;
   margin: 0 auto;
   border-radius: 6px;
+  height: auto;
+  /* margin-bottom: -100px; */
 }
 
-footer {
+/* footer {
   background: #333e5a;
   color: #fff;
   text-align: center;
-  flex-grow: 0;
+  flex-grow: 6;
   padding: 1em 0;
 }
 
 footer a {
   color: #fff;
+} */
+
+/* .container {
+  width: 350px;
+  z-index: 5;
+} */
+
+.textBox {
+  /* display: block; */
+  position: absolute;
+  width: 350px;
+  z-index: 5;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.titleOptions {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  margin-right: 1vw;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+  background: #e9c46a;
 }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Video from 'twilio-video';
 import Participant from './Participant';
 
 
 
-const Room = ({ roomName, token, handleLogout}) => {
+const Room = (props) => {
     const [room, setRoom] = useState(null);
     const [participants, setParticipants] = useState([]);
 
@@ -21,8 +22,8 @@ const Room = ({ roomName, token, handleLogout}) => {
             prevParticipants.filter(p => p !== participant)
           );
         };
-        Video.connect(token, {
-          name: roomName
+        Video.connect(props.token, {
+          name: props.roomName
         }).then(room => {
           setRoom(room);
           room.on('participantConnected', participantConnected);
@@ -42,24 +43,35 @@ const Room = ({ roomName, token, handleLogout}) => {
               }
             });
           };
-      }, [roomName, token]);
+      }, [props.roomName, props.token]);
 
     return (
         <div className="room">
-            <h2>Room: {roomName}</h2>
-            <button onClick={handleLogout}>Log out</button>
-            <div className="local-participant">
-                {room? (
-                    <Participant
-                        key={room.localParticipant.sid}
-                        participant={room.localParticipant}
-                    />
-                ) : (
-                    ''
-                )}
+          <div className="titleOptions">
+            <h2>Room: {props.roomName}</h2>
+            <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Options
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <Link className="dropdown-item" onClick={props.handleLogout} to="/">Leave Meeting</Link>
+                  <a className="dropdown-item" onClick={props.toggleTextBox}>{props.textBox === 'container textBox hidden' ? 'Show Chat' : "Hide Chat"}</a>
+                </div>
             </div>
-            <h3>Remote Participants</h3>
-            <div className="remote-participants">{remoteParticipants}</div>
+            </div>
+            <div className="participants">
+                {room? (
+                  <>
+                  <Participant
+                      key={room.localParticipant.sid}
+                      participant={room.localParticipant}
+                  />
+                  </>
+                  ) : (
+                    ''
+                  )}
+                {remoteParticipants}
+              </div>
         </div>
     )
 }

@@ -1,7 +1,9 @@
 import React, { Component, useCallback } from 'react';
+import io from "socket.io-client";
 
 import Lobby from './Lobby';
 import Room from './Room';
+import TextChat from './TextChat';
 
 
 class VideoChat extends Component {
@@ -11,7 +13,10 @@ class VideoChat extends Component {
             // username: '',
             roomName: '',
             token: null,
+            textBox: 'container textBox hidden',
         }
+        // this.socket = io('localhost:3001')
+        this.socket = io()
     }
 
     // handleUsernameChange = (event) => {
@@ -29,6 +34,24 @@ class VideoChat extends Component {
             [name]: value,
         })
     }
+
+    toggleTextBox = () => {
+        if(this.state.textBox === 'container textBox hidden'){
+            this.setState({
+                textBox: 'container textBox'
+            })
+        }
+        else{
+            this.setState({
+                textBox: 'container textBox hidden'
+            })
+        }
+    }
+    // joinMessageRoom = () => {
+    //         this.socket.emit('JOIN_ROOM', {
+    //             roomName: this.state.roomName
+    //         });
+    //     }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -48,6 +71,7 @@ class VideoChat extends Component {
             this.setState({
                 token: data.token, 
             });
+            // this.joinMessageRoom()
         })
         .then((data) => {
             console.log(this.state.token)
@@ -62,7 +86,13 @@ class VideoChat extends Component {
 
     whichRender = () => {
         if(this.state.token) {
-            return <Room roomName={this.state.roomName} token={this.state.token} handleLogout={this.handleLogout} />
+            return (
+                <>
+                <TextChat user={this.props.user} roomName={this.state.roomName} textBox={this.state.textBox}/>
+                <Room roomName={this.state.roomName} token={this.state.token} handleLogout={this.handleLogout} toggleTextBox={this.toggleTextBox} textBox={this.state.textBox}/>
+                {/* <TextChat user={this.props.user} roomName={this.state.roomName} textBox={this.state.textBox}/> */}
+                </>
+            )
         }
         else {
             return <Lobby

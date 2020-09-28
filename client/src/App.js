@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import './App.css';
+// import './App.css';
+
+// import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/js/bootstrap.js';
+// import $ from 'jquery';
+// import Popper from 'popper.js';
+
 import VideoChat from './components/VideoChat';
 import TextChat from './components/TextChat';
 import Login from './components/Login';
@@ -15,6 +22,8 @@ class App extends Component {
     this.state = {
       auth: false,
       user: null,
+      rooms: null,
+      currentRoom: null,
     }
   }
 
@@ -27,6 +36,20 @@ class App extends Component {
           user: res.data.user,
         })
       }).catch(err => console.log(err));
+  }
+
+  getAllRooms = () => {
+    fetch('/api/rooms/al;sdjhfajshdfk;jashdf', { 
+      credentials: 'include' 
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      this.setState({
+        rooms: res.data.rooms
+      })
+    })
+
   }
 
   handleLoginSubmit = (e, data) => {
@@ -85,9 +108,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <Header logout={this.logout}/>
-        </header>
+          <Header logout={this.logout} auth={this.state.auth}/>
             <div>
             <Route exact path='/Login' render={() => (
                 this.state.auth
@@ -101,16 +122,10 @@ class App extends Component {
               : <Register handleRegisterSubmit={this.handleRegisterSubmit}/>
             )} />
 
-            <Route exact path='/VideoChat' render={() => (
+            <Route exact path='/' render={() => (
                 !this.state.auth
                 ? <Redirect to='/Login' />
                 : <VideoChat user={this.state.user}/>
-              )} />
-
-            <Route exact path='/TextChat' render={() => (
-                !this.state.auth
-                ? <Redirect to='/Login' />
-                : <TextChat user={this.state.user}/>
               )} />
               
             </div>

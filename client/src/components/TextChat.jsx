@@ -1,22 +1,26 @@
 import React from "react";
 import io from "socket.io-client";
+import Draggable from 'react-draggable';
 
 class TextChat extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             // username: '',
+            roomName: this.props.roomName ? this.props.roomName : 'Global',
             message: '',
             messages: []
         };
 
-        this.socket = io('localhost:3001')
+        // this.socket = io('localhost:3001')
+        this.socket = io()
 
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
                 author: this.props.user.name,
-                message: this.state.message
+                message: this.state.message,
+                roomName: this.state.roomName
             });
             this.setState({message: ''});
         }
@@ -33,12 +37,13 @@ class TextChat extends React.Component{
     }
     render(){
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
+            <Draggable>
+            <div className={this.props.textBox}>
+                {/* <div className="row"> */}
+                    {/* <div className="col-4"> */}
                         <div className="card">
                             <div className="card-body">
-                                <div className="card-title">Global Chat</div>
+                                <div className="card-title">{this.props.roomName}</div>
                                 <hr/>
                                 <div className="messages">
                                     {this.state.messages.map(message => {
@@ -56,9 +61,10 @@ class TextChat extends React.Component{
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
             </div>
+            </Draggable>
         );
     }
 }
