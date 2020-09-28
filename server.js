@@ -50,7 +50,8 @@ const io = socket(http)
 
 io.on('connection', (socket) => {
     // socket.on('JOIN_ROOM', function (data) {
-    //     return roomName = data.roomName
+    //     socket.join(data.roomName)
+    //     console.log(data.roomName)
     // });
 
     //connecting to room

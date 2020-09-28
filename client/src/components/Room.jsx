@@ -55,8 +55,8 @@ const Room = (props) => {
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <Link className="dropdown-item" onClick={props.handleLogout} to="/">Leave Meeting</Link>
-                  <a className="dropdown-item" onClick={props.toggleTextBox}>{props.textBox === 'container textBox hidden' ? 'Show Chat' : "Hide Chat"}</a>
-                  <a className="dropdown-item" onClick={props.toggleMuted}>{props.muted === false ? 'Mute' : "Unmute"}</a>
+                  <Link className="dropdown-item" onClick={props.toggleTextBox}>{props.textBox === 'container textBox hidden' ? 'Show Chat' : "Hide Chat"}</Link>
+                  {/* <a className="dropdown-item" onClick={props.toggleMuted}>{props.muted === false ? 'Mute' : "Unmute"}</a> */}
                 </div>
             </div>
             </div>
