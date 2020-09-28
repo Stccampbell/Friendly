@@ -1,5 +1,5 @@
 # Friendly
-is a Video sharing app similar to zoom and skype. The idea was to push myself and explore technologies we hadnt gone over in class!
+Friendly is a Video sharing app similar to zoom and skype. The idea was to push myself and explore technologies we hadnt gone over in class!
 ![DemoPhoto](./preproduction/ExamplePhoto.png)
 
 ## Link to deployed app
