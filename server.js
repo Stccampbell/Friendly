@@ -99,11 +99,17 @@ app.use('/communication', communicationRouter)
 const authRouter = require('./routes/auth-routes');
 app.use('/api/auth', authRouter);
 
+// app.use('*', (req, res) => {
+//     res.status(400).json({
+//         message: 'Not Found!',
+//     });
+// });
+
 app.use('*', (req, res) => {
-    res.status(400).json({
-        message: 'Not Found!',
-    });
-});
+    process.env.NODE_ENV === 'production'
+      ? res.sendFile(path.join(__dirname, 'public/index.html'))
+      : res.status(404).json({ message: 'not found' });
+  });
 
 app.use((err, req, res, next) => {
     console.log(err);
