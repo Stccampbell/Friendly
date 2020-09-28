@@ -66,7 +66,7 @@ const Participant = ( props ) => {
     <div className="participant">
       <h3>{props.participant.identity}{props.muted ? ": Muted" : ""}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true}  />
+      <audio ref={audioRef} autoPlay={true} muted={false}/>
     </div>
   );
 };

@@ -218,3 +218,7 @@ footer a {
 .loginButtonutton:hover {
   filter: brightness(150%);
 }
+.messages {
+  overflow-y: auto;
+  max-height: 30vh;
+}
