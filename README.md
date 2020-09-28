@@ -2,6 +2,10 @@
 is a Video sharing app similar to zoom and skype. The idea was to push myself and explore technologies we hadnt gone over in class!
 [DemoPhoto](./preproduction/Screen Shot 2020-09-28 at 1.30.46 PM 1.png)
 
+## Link to deployed app
+https://still-tor-23302.herokuapp.com/
+
+
 ## Explanation of Technology
 - Node.js and Express were used to create the backend of the system. There are only a couple routes for user authentication and for the communication with the api for video streaming.
 - React, CSS, Bootstrap, and Jquery were used to create the client side of the application. This was my first time working with Jquery and Bootstrap but it added alot of similicty and uniqeness to the frontend.
@@ -17,11 +21,8 @@ You will also need to sign up with Twilio and get some keys from them.
 All of these should be put in your .env file.
 
 ## WireFrames
-[Wireframes](./preproduction/Login.png)
-[Wireframes](./preproduction/Video.png)
+![Wireframes](./preproduction/Login.png)
+![Wireframes](./preproduction/Video.png)
 
 ## ERDS
-[Entity Relationship Diagram(ERD)](./preproduction/Schema.png)
-
-## Link to deployed app
-https://still-tor-23302.herokuapp.com/
+![Entity Relationship Diagram(ERD)](./preproduction/Schema.png)
