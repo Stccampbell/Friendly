@@ -14,6 +14,7 @@ class VideoChat extends Component {
             roomName: '',
             token: null,
             textBox: 'container textBox hidden',
+            muted: false,
         }
         // this.socket = io('localhost:3001')
         this.socket = io()
@@ -44,6 +45,19 @@ class VideoChat extends Component {
         else{
             this.setState({
                 textBox: 'container textBox hidden'
+            })
+        }
+    }
+
+    toggleMuted = () => {
+        if(this.state.muted === false){
+            this.setState({
+                muted: true
+            })
+        }
+        else{
+            this.setState({
+                muted: false
             })
         }
     }
@@ -89,7 +103,14 @@ class VideoChat extends Component {
             return (
                 <>
                 <TextChat user={this.props.user} roomName={this.state.roomName} textBox={this.state.textBox}/>
-                <Room roomName={this.state.roomName} token={this.state.token} handleLogout={this.handleLogout} toggleTextBox={this.toggleTextBox} textBox={this.state.textBox}/>
+                <Room roomName={this.state.roomName} 
+                token={this.state.token} 
+                handleLogout={this.handleLogout} 
+                toggleTextBox={this.toggleTextBox} 
+                textBox={this.state.textBox}
+                muted={this.state.muted}
+                toggleMuted={this.toggleMuted}/>
+                
                 {/* <TextChat user={this.props.user} roomName={this.state.roomName} textBox={this.state.textBox}/> */}
                 </>
             )

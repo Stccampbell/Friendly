@@ -189,3 +189,32 @@ footer a {
 .btn.btn-secondary.dropdown-toggle {
   background: #e9c46a;
 }
+
+.loginPage {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.loginInput {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid #333e5a;
+}
+
+.loginButton {
+  background: #333e5a;
+  color: #fff;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.loginButtonutton:hover {
+  filter: brightness(150%);
+}

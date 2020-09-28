@@ -23,43 +23,57 @@ class Register extends Component {
 
     render(){
         return(
-            <div className="loginform">
+            <div className="loginPage">
+                     <div className="card login">
+                        <div className="card-body bodyLogin">
+                            <div className="card-title">Register</div>
+                            <hr/>
                 <form className="loginform" onSubmit={(e) => this.props.handleRegisterSubmit(e, this.state)}>
-                    <input 
+                    <input
+                    className='loginInput' 
                     type='text'
                     name='username'
                     value={this.state.username}
                     placeholder='Username'
                     onChange={this.handleChange} 
                     />
+                    <br/>
 
                     <input 
+                    className='loginInput'
                     type='password'
                     name='password'
                     value={this.state.password}
                     placeholder='Password'
                     onChange={this.handleChange} 
                     />
+                    <br/>
 
                     <input 
+                    className='loginInput'
                     type="email" 
                     name="email" 
                     value={this.state.email} 
-                    placeholder="email" 
+                    placeholder="Email" 
                     onChange={this.handleChange} 
                     />
+                    <br/>
 
                     <input 
+                    className='loginInput'
                     type="text" 
                     name="name" 
                     value={this.state.name} 
                     placeholder="Name" 
                     onChange={this.handleChange} 
                     />
+                    <br/>
 
-                    <input type='submit' value='Register!'/>
+                    <input className="loginButton" type='submit' value='Register!'/>
                 </form>
                 <Link to="/login">Already have an account?</Link>
+            </div>
+            </div>
             </div>
         )
     }
